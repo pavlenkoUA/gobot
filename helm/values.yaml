@@ -3,14 +3,12 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   repository: stunnyman
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.0"
+  tag: "v1.0.2-61da83a"
   arch: amd64
-
 secret:
   name: "kbot"
   env: "TELE_TOKEN"
