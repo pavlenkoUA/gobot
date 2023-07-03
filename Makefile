@@ -5,7 +5,7 @@ ifeq ($(strip $(REGISTRY)),)
 REGISTRY := docker.io
 endif
 ifeq ($(strip $(REPOSITORY)),)
-REPOSITORY := stunnyman
+REPOSITORY := pavlenkoua
 endif
 VERSION := $(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 ifeq ($(strip $(TARGETOS)),)
