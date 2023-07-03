@@ -7,6 +7,7 @@ on:
 
 env:
   TARGETARCH: amd64
+  TARGETOS: linux
   
 jobs:
   ci:
@@ -32,8 +33,11 @@ jobs:
       - name: Build and Push
         env:
           APP: "kbot"
-          REGISTRY: pavlenkoua
-        run: make image push TARGETARCH=$TARGETARCH
+          REGISTRY: ghcr.io
+          USERNAME: ${{ secrets.GHCR_USERNAME }}
+          TOKEN: ${{ secrets.GHCR_TOKEN }}
+          TARGETOS: ${{ env.TARGETOS }}
+        run: make image push TARGETARCH=$TARGETARCH TARGETOS=$TARGETOS 
       
   cd:
     name: CD
