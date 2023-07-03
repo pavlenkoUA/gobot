@@ -4,9 +4,8 @@
 
 replicaCount: 1
 image:
-  repository: stunnyman
+  repository: ghcr.io/pavlenkoua
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0.2-61da83a"
   arch: amd64
 secret:

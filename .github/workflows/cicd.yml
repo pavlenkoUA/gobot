@@ -1,6 +1,9 @@
 name: KBOT-CICD
 
-on: push
+on:
+  push:
+    branches:
+      - develop
 
 env:
   TARGETARCH: amd64
@@ -16,19 +19,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run test
+      - name: Run tests
         run: make test
 
-      - name: Docker Hub login
+      - name: GHCR login
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: pavlenkoua
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build&Push
+      - name: Build and Push
         env:
           APP: "kbot"
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
+          REGISTRY: pavlenkoua
         run: make image push TARGETARCH=$TARGETARCH
       
   cd:
@@ -44,9 +48,9 @@ jobs:
 
     - uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.image.tag=strenv(VERSION) | .image.arch=strenv(TARGETARCH)' helm/values.yaml
+        cmd: yq -i '.image.tag=env(VERSION) | .image.arch=env(TARGETARCH)' helm/values.yaml
     - run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git commit -am "update version $VERSION"
+        git commit -am "Update version to $VERSION"
         git push
