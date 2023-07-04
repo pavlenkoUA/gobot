@@ -14,3 +14,25 @@ variable "GKE_NUM_NODES" {
   default     = 2
   description = "GKE nodes number"
 }
+
+variable "GHCR_USERNAME" {
+  type        = string
+  description = "GitHub owner repository to use"
+}
+
+variable "GHCR_TOKEN" {
+  type        = string
+  description = "GitHub personal access token"
+}
+
+variable "FLUX_GITHUB_REPO" {
+  type        = string
+  default     = "flux-gitops"
+  description = "Flux GitOps repository"
+}
+
+variable "FLUX_GITHUB_TARGET_PATH" {
+  type        = string
+  default     = "clusters"
+  description = "Flux manifests subdirectory"
+}
