@@ -7,7 +7,7 @@ image:
   repository: stunnyman
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.2-9696b7c"
+  tag: "v1.0.2-16a46c0"
   arch: amd64
 secret:
   name: "kbot"
