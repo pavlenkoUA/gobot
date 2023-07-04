@@ -19,7 +19,7 @@ module "fluxcd_flux_bootstrap" {
 }
 
 module "github_repository" {
-  source                   = "github.com/pavlenkoua/tf-github-repository"
+  source                   = "github.com/den-vasyliev/tf-github-repository"
   github_owner             = var.GHCR_USERNAME
   github_token             = var.GHCR_TOKEN
   repository_name          = var.FLUX_GITHUB_REPO
